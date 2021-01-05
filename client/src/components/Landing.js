@@ -9,7 +9,7 @@ const Landing = () => {
     const onClick = async (e) => {
         try {
             // Create a new game
-            const res = await axios.post('http://localhost:5000/api/game');
+            const res = await axios.post('/api/game');
             const id = res.data._id;
 
             // Redirect to the game

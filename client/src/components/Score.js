@@ -65,7 +65,7 @@ const Score = ({ match }) => {
     // Get game data on refresh
     useEffect(() => {
         async function fetchData() {
-            const url = `http://localhost:5000/api/game/${match.params.id}`;
+            const url = `/api/game/${match.params.id}`;
             await axios.get(url).then(function (score) {
                 rules(score.data.player1Score, score.data.player2Score);
             });
@@ -75,7 +75,7 @@ const Score = ({ match }) => {
 
     // Change individual player scores
     const onClick = async (e, num) => {
-        const url = `http://localhost:5000/api/game/player${num}Scored/${match.params.id}`;
+        const url = `/api/game/player${num}Scored/${match.params.id}`;
         await axios.put(url).then(function (score) {
             rules(score.data.player1Score, score.data.player2Score);
         });
@@ -84,7 +84,7 @@ const Score = ({ match }) => {
     // delete game instance and redirect
     const history = useHistory();
     const restart = async (e) => {
-        const url = `http://localhost:5000/api/game/${match.params.id}`;
+        const url = `/api/game/${match.params.id}`;
         await axios.delete(url);
 
         let path = `/`;
