@@ -1,0 +1,3 @@
+{
+    "mongoURI": "mongodb+srv://felix:felix@tennis.efh7l.mongodb.net/Tennis?retryWrites=true&w=majority"
+}
