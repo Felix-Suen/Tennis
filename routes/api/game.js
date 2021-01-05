@@ -61,7 +61,7 @@ router.delete('/:id', async (req, res) => {
     }
 });
 
-// convert points to tennis score
+// function that converts points to tennis score
 function convert(point) {
     if (point === 0) return '0';
     if (point === 1) return '15';
@@ -69,7 +69,7 @@ function convert(point) {
     if (point === 3) return '40';
 }
 
-// display to comply with Tennis rules
+// function that displays to comply with Tennis rules
 function rules(player1, player2) {
     // when both scores are 40
     if (player1 >= 3 && player2 >= 3 && player1 === player2) {

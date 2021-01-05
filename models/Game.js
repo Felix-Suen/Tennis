@@ -2,19 +2,24 @@ const mongoose = require('mongoose');
 
 const GameSchema = new mongoose.Schema({
     player1Score: {
-        type: Number
+        type: Number,
+        required : true
     },
     player2Score: {
-        type: Number
+        type: Number,
+        required : true
     },
     player1TennisScore: {
-        type: String
+        type: String,
+        required : true
     },
     player2TennisScore: {
-        type: String
+        type: String,
+        required : true
     },
     endGame: {
-        type: Boolean
+        type: Boolean,
+        required : true
     }
 })
 
