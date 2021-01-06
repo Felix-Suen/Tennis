@@ -578,3 +578,9 @@ describe('Tennis API', () => {
         });
     });
 });
+
+// delete all the test entries
+after(function (done) {
+    console.log('Clearing test database');
+    mongoose.connection.db.dropDatabase(done);
+});
