@@ -38,7 +38,7 @@ const Score = ({ match }) => {
     const restart = async (e) => {
         const url = `/api/game/${match.params.id}`;
         await axios.delete(url);
-
+        // redirect to home page
         history.push(`/`);
     };
 
