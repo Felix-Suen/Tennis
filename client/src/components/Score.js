@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useHistory } from 'react-router-dom';
 import { Container, Row, Col } from 'react-bootstrap';
+import tennis from '../img/tennis.png';
 import '../App.css';
 
 const Score = ({ match }) => {
@@ -44,11 +45,12 @@ const Score = ({ match }) => {
     return (
         <div className="centre">
             <Container>
-                <h1>Tennis Score Tracker</h1>
+                <h1>Tennis Score Tracker  <img src={tennis} width={30} height={30} /></h1>
                 <Row>
                     <Col>
                         <div>
-                            <p>Player 1</p>
+                            <b>Player 1</b>
+                            <br />
                             <h1>{score1}</h1>
                             {endGame ? null : (
                                 <button onClick={(e) => onClick(e, 1)}>
@@ -59,7 +61,8 @@ const Score = ({ match }) => {
                     </Col>
                     <Col>
                         <div>
-                            <p>Player 2</p>
+                            <b>Player 2</b>
+                            <br />
                             <h1>{score2}</h1>
                             {endGame ? null : (
                                 <button onClick={(e) => onClick(e, 2)}>

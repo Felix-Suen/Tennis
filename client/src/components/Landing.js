@@ -1,6 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 import { useHistory } from 'react-router-dom';
+import tennis from '../img/tennis.png';
 import '../App.css';
 
 const Landing = () => {
@@ -22,9 +23,12 @@ const Landing = () => {
 
     return (
         <div className="centre">
-            <h1>Tennis Score Tracker</h1>
+            <h1>
+                Tennis Score Tracker <img src={tennis} width={30} height={30} />
+            </h1>
             <p>By Felix Suen</p>
-            <br /><br />
+            <br />
+            <br />
             <button onClick={(e) => onClick(e)}>Start a new game</button>
         </div>
     );
