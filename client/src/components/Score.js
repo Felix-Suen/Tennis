@@ -46,6 +46,7 @@ const Score = ({ match }) => {
         <div className="centre">
             <Container>
                 <h1>Tennis Score Tracker  <img src={tennis} width={30} height={30} /></h1>
+                <br />
                 <Row>
                     <Col>
                         <div>
