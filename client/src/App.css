@@ -2,3 +2,20 @@
     margin-top: 25vh;
     text-align: center;
 }
+
+button {
+    border: 2px black solid;
+    background: none;
+}
+
+button:hover {
+    background: yellow;
+}
+
+.reset-btn:hover {
+    background: red;
+}
+
+b {
+    color: green;
+}

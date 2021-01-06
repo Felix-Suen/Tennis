@@ -71,9 +71,12 @@ const Score = ({ match }) => {
                 </Row>
             </Container>
 
+            {score1 === 'Winner' && (<b>Player 1 Wins</b>)}
+            {score2 === 'Winner' && (<b>Player 2 Wins</b>)}
+
             <br />
             <br />
-            <button onClick={(e) => restart(e)}>Restart Game</button>
+            <button className="reset-btn" onClick={(e) => restart(e)}>Restart Game</button>
         </div>
     );
 };
