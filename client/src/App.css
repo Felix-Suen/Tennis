@@ -1,13 +1,17 @@
 :root {
-    --background: #377DB8;
-  }
-
-.centre {
-    margin-top: 25vh;
-    text-align: center;
+    --background: #377db8;
 }
+
 h1 {
     color: var(--background);
+}
+
+b {
+    color: var(--background);
+}
+
+p {
+    font-size: 20px;
 }
 
 button {
@@ -16,7 +20,7 @@ button {
 }
 
 button:hover {
-    background:var(--background);
+    background: var(--background);
     border: 2px var(--background) solid;
     color: white;
 }
@@ -26,6 +30,7 @@ button:hover {
     color: yellow;
 }
 
-b {
-    color: var(--background);
+.centre {
+    margin-top: 25vh;
+    text-align: center;
 }

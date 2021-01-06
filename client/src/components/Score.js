@@ -49,8 +49,7 @@ const Score = ({ match }) => {
                 <Row>
                     <Col>
                         <div>
-                            <b>Player 1</b>
-                            <br />
+                            <p>Player 1</p>
                             <h1>{score1}</h1>
                             {endGame ? null : (
                                 <button onClick={(e) => onClick(e, 1)}>
@@ -61,8 +60,7 @@ const Score = ({ match }) => {
                     </Col>
                     <Col>
                         <div>
-                            <b>Player 2</b>
-                            <br />
+                            <p>Player 2</p>
                             <h1>{score2}</h1>
                             {endGame ? null : (
                                 <button onClick={(e) => onClick(e, 2)}>
