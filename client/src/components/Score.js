@@ -24,8 +24,8 @@ const Score = ({ match }) => {
     }, [match.params.id]);
 
     // Change individual player scores
-    const onClick = async (e, num) => {
-        const url = `/api/game/player${num}Scored/${match.params.id}`;
+    const onClick = async (e, player_id) => {
+        const url = `/api/game/${match.params.id}/${player_id}`;
         await axios.put(url).then(function (score) {
             setScore1(score.data.player1TennisScore);
             setScore2(score.data.player2TennisScore);
@@ -53,7 +53,7 @@ const Score = ({ match }) => {
                             <p>Player 1</p>
                             <h1>{score1}</h1>
                             {endGame ? null : (
-                                <button onClick={(e) => onClick(e, 1)}>
+                                <button onClick={(e) => onClick(e, '1')}>
                                     Player 1 scored
                                 </button>
                             )}
@@ -64,7 +64,7 @@ const Score = ({ match }) => {
                             <p>Player 2</p>
                             <h1>{score2}</h1>
                             {endGame ? null : (
-                                <button onClick={(e) => onClick(e, 2)}>
+                                <button onClick={(e) => onClick(e, '2')}>
                                     Player 2 scored
                                 </button>
                             )}

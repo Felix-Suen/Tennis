@@ -98,16 +98,18 @@ function rules(player1, player2) {
     }
 }
 
-// @route   PUT api/game/player1Scored/:id
-// @desc    Player 1 increment score by one and update overall tennis score
+// @route   PUT api/game/:id/:player_id
+// @desc    Player 1 or 2 increment score by one and update overall tennis score
 // @access  Public
-router.put('/player1Scored/:id', async (req, res) => {
+router.put('/:id/:player_id', async (req, res) => {
     try {
         const game = await Game.findById(req.params.id);
 
-        if (game.endGame === false) {
+        // increment score of player 1
+        if (game.endGame === false && req.params.player_id === '1') {
             game.player1Score = game.player1Score + 1;
 
+            // calls the rules function to set tennis score
             const setTennisScore = rules(game.player1Score, game.player2Score);
             game.player1TennisScore = setTennisScore[0];
             game.player2TennisScore = setTennisScore[1];
@@ -117,20 +119,8 @@ router.put('/player1Scored/:id', async (req, res) => {
 
             res.json(game);
         }
-    } catch (err) {
-        console.error(err.message);
-        res.status(500).send('Server Error');
-    }
-});
-
-// @route   PUT api/game/player2scored/:id
-// @desc    Player 2 increment score by one and update overall tennis score
-// @access  Public
-router.put('/player2scored/:id', async (req, res) => {
-    try {
-        const game = await Game.findById(req.params.id);
-
-        if (game.endGame === false) {
+        // increment score of player 2
+        else if (game.endGame === false && req.params.player_id === '2') {
             game.player2Score = game.player2Score + 1;
 
             const setTennisScore = rules(game.player1Score, game.player2Score);
@@ -141,6 +131,10 @@ router.put('/player2scored/:id', async (req, res) => {
             await game.save();
 
             res.json(game);
+        }
+        // wrong game ID or player ID
+        else {
+            return res.status(404).json({ msg: 'Invalid url' });
         }
     } catch (err) {
         console.error(err.message);
