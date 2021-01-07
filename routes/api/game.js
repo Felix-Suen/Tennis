@@ -69,7 +69,8 @@ function convert(point) {
     if (point === 3) return '40';
 }
 
-// function that displays to comply with Tennis rules
+// function that displays scores to comply with Tennis rules
+// returns an array [player1TennisScore, player2TennisScore, endGame]
 function rules(player1, player2) {
     // when both scores are 40
     if (player1 >= 3 && player2 >= 3 && player1 === player2) {

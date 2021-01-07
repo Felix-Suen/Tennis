@@ -2,7 +2,7 @@
 
 ```npm install```
 
-```npm run dev``` will start both React and Node
+```npm run dev``` starts both React and Node
 
 ```npm run test``` starts testing
 

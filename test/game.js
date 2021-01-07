@@ -3,6 +3,7 @@ process.env.NODE_ENV = 'test';
 const mongoose = require('mongoose');
 const Game = require('../models/Game');
 
+// using mocha and chai for testing
 const chai = require('chai');
 const chaiHttp = require('chai-http');
 const server = require('../server');
@@ -516,17 +517,17 @@ describe('Tennis API', () => {
                     .send()
                     .end((err, res) => {
                         res.should.have.status(404);
-                    res.body.should.be
-                        .a('object')
-                        .eql({ msg: 'Invalid player id' });
-                    done();
+                        res.body.should.be
+                            .a('object')
+                            .eql({ msg: 'Invalid player id' });
+                        done();
                     });
             });
         });
     });
 });
 
-// delete all the test entries
+// delete all the test entries from the test database
 after(function (done) {
     console.log('Clearing test database');
     mongoose.connection.db.dropDatabase(done);
