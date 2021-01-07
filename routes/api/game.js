@@ -50,7 +50,7 @@ router.delete('/:id', async (req, res) => {
         const game = await Game.findById(req.params.id);
 
         if (!game) {
-            return res.status(404).json({ msg: 'Game not found' });
+            return res.status(404);
         }
 
         await game.remove();
@@ -105,6 +105,10 @@ router.put('/:id/:player_id', async (req, res) => {
     try {
         const game = await Game.findById(req.params.id);
 
+        if (!game) {
+            return res.status(404).json({ msg: 'Game not found' });
+        }
+
         // increment score of player 1
         if (game.endGame === false && req.params.player_id === '1') {
             game.player1Score = game.player1Score + 1;
@@ -132,9 +136,9 @@ router.put('/:id/:player_id', async (req, res) => {
 
             res.json(game);
         }
-        // wrong game ID or player ID
-        else {
-            return res.status(404).json({ msg: 'Invalid url' });
+        // wrong game ID
+        else if (req.params.player_id !== '1' || req.params.player_id !== '2') {
+            return res.status(404).json({ msg: 'Invalid player id' });
         }
     } catch (err) {
         console.error(err.message);

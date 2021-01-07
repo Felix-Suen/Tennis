@@ -113,7 +113,7 @@ describe('Tennis API', () => {
         });
         it('it should not DELETE a game with wrong id', (done) => {
             chai.request(api)
-                .delete('/api/game' + '5ff4d37682a0a03e2038ea5f')
+                .delete('/api/game' + '5ff681101c0eda4ce06c7079')
                 .send()
                 .end((err, res) => {
                     res.should.have.status(404);
@@ -122,8 +122,9 @@ describe('Tennis API', () => {
         });
     });
 
-    // test PUT route of player 1
-    describe('PUT /api/game/player1Scored/:id', () => {
+    // test PUT route of player 1 and player 2
+    describe('PUT /api/game/:id/:player_id', () => {
+        // player 1 PUT route
         it('it should increment player1Score by 1 and player1TennisScore to 15 at the start', (done) => {
             let newGame = new Game({
                 player1Score: 0,
@@ -134,7 +135,7 @@ describe('Tennis API', () => {
             });
             newGame.save((err, newGame) => {
                 chai.request(api)
-                    .put('/api/game/player1Scored/' + newGame.id)
+                    .put('/api/game/' + newGame.id + '/1')
                     .send()
                     .end((err, res) => {
                         res.should.have.status(200);
@@ -162,7 +163,7 @@ describe('Tennis API', () => {
             });
             newGame.save((err, newGame) => {
                 chai.request(api)
-                    .put('/api/game/player1Scored/' + newGame.id)
+                    .put('/api/game/' + newGame.id + '/1')
                     .send()
                     .end((err, res) => {
                         res.should.have.status(200);
@@ -190,7 +191,7 @@ describe('Tennis API', () => {
             });
             newGame.save((err, newGame) => {
                 chai.request(api)
-                    .put('/api/game/player1Scored/' + newGame.id)
+                    .put('/api/game/' + newGame.id + '/1')
                     .send()
                     .end((err, res) => {
                         res.should.have.status(200);
@@ -218,7 +219,7 @@ describe('Tennis API', () => {
             });
             newGame.save((err, newGame) => {
                 chai.request(api)
-                    .put('/api/game/player1Scored/' + newGame.id)
+                    .put('/api/game/' + newGame.id + '/1')
                     .send()
                     .end((err, res) => {
                         res.should.have.status(200);
@@ -246,7 +247,7 @@ describe('Tennis API', () => {
             });
             newGame.save((err, newGame) => {
                 chai.request(api)
-                    .put('/api/game/player1Scored/' + newGame.id)
+                    .put('/api/game/' + newGame.id + '/1')
                     .send()
                     .end((err, res) => {
                         res.should.have.status(200);
@@ -274,7 +275,7 @@ describe('Tennis API', () => {
             });
             newGame.save((err, newGame) => {
                 chai.request(api)
-                    .put('/api/game/player1Scored/' + newGame.id)
+                    .put('/api/game/' + newGame.id + '/1')
                     .send()
                     .end((err, res) => {
                         res.should.have.status(200);
@@ -302,7 +303,7 @@ describe('Tennis API', () => {
             });
             newGame.save((err, newGame) => {
                 chai.request(api)
-                    .put('/api/game/player1Scored/' + newGame.id)
+                    .put('/api/game/' + newGame.id + '/1')
                     .send()
                     .end((err, res) => {
                         res.should.have.status(200);
@@ -330,7 +331,7 @@ describe('Tennis API', () => {
             });
             newGame.save((err, newGame) => {
                 chai.request(api)
-                    .put('/api/game/player1Scored/' + newGame.id)
+                    .put('/api/game/' + newGame.id + '/1')
                     .send()
                     .end((err, res) => {
                         res.should.have.status(200);
@@ -348,10 +349,7 @@ describe('Tennis API', () => {
                     });
             });
         });
-    });
-
-    // test PUT route of player 2
-    describe('PUT /api/game/player2Scored/:id', () => {
+        // player 2 PUT route
         it('it should increment player2Score by 1 and player2TennisScore to 15 at the start', (done) => {
             let newGame = new Game({
                 player1Score: 0,
@@ -362,7 +360,7 @@ describe('Tennis API', () => {
             });
             newGame.save((err, newGame) => {
                 chai.request(api)
-                    .put('/api/game/player2Scored/' + newGame.id)
+                    .put('/api/game/' + newGame.id + '/2')
                     .send()
                     .end((err, res) => {
                         res.should.have.status(200);
@@ -380,62 +378,6 @@ describe('Tennis API', () => {
                     });
             });
         });
-        it('it should increment player2Score to 2 and player2TennisScore to 30 next', (done) => {
-            let newGame = new Game({
-                player1Score: 0,
-                player2Score: 1,
-                player1TennisScore: '0',
-                player2TennisScore: '15',
-                endGame: false,
-            });
-            newGame.save((err, newGame) => {
-                chai.request(api)
-                    .put('/api/game/player2Scored/' + newGame.id)
-                    .send()
-                    .end((err, res) => {
-                        res.should.have.status(200);
-                        res.body.should.have.property('_id').eql(newGame.id);
-                        res.body.should.have.property('player1Score').eql(0);
-                        res.body.should.have.property('player2Score').eql(2);
-                        res.body.should.have
-                            .property('player1TennisScore')
-                            .eql('0');
-                        res.body.should.have
-                            .property('player2TennisScore')
-                            .eql('30');
-                        res.body.should.have.property('endGame').eql(false);
-                        done();
-                    });
-            });
-        });
-        it('it should increment player2Score to 3 and player2TennisScore to 40 next', (done) => {
-            let newGame = new Game({
-                player1Score: 0,
-                player2Score: 2,
-                player1TennisScore: '0',
-                player2TennisScore: '30',
-                endGame: false,
-            });
-            newGame.save((err, newGame) => {
-                chai.request(api)
-                    .put('/api/game/player2Scored/' + newGame.id)
-                    .send()
-                    .end((err, res) => {
-                        res.should.have.status(200);
-                        res.body.should.have.property('_id').eql(newGame.id);
-                        res.body.should.have.property('player1Score').eql(0);
-                        res.body.should.have.property('player2Score').eql(3);
-                        res.body.should.have
-                            .property('player1TennisScore')
-                            .eql('0');
-                        res.body.should.have
-                            .property('player2TennisScore')
-                            .eql('40');
-                        res.body.should.have.property('endGame').eql(false);
-                        done();
-                    });
-            });
-        });
         it('it should increment player2Score to 4 and player2TennisScore to "Winner" and end game', (done) => {
             let newGame = new Game({
                 player1Score: 0,
@@ -446,7 +388,7 @@ describe('Tennis API', () => {
             });
             newGame.save((err, newGame) => {
                 chai.request(api)
-                    .put('/api/game/player2Scored/' + newGame.id)
+                    .put('/api/game/' + newGame.id + '/2')
                     .send()
                     .end((err, res) => {
                         res.should.have.status(200);
@@ -474,7 +416,7 @@ describe('Tennis API', () => {
             });
             newGame.save((err, newGame) => {
                 chai.request(api)
-                    .put('/api/game/player2Scored/' + newGame.id)
+                    .put('/api/game/' + newGame.id + '/2')
                     .send()
                     .end((err, res) => {
                         res.should.have.status(200);
@@ -502,7 +444,7 @@ describe('Tennis API', () => {
             });
             newGame.save((err, newGame) => {
                 chai.request(api)
-                    .put('/api/game/player2Scored/' + newGame.id)
+                    .put('/api/game/' + newGame.id + '/2')
                     .send()
                     .end((err, res) => {
                         res.should.have.status(200);
@@ -520,34 +462,6 @@ describe('Tennis API', () => {
                     });
             });
         });
-        it('it should increment player2Score to 4 and player2TennisScore to "Deuce" after player2 Ad', (done) => {
-            let newGame = new Game({
-                player1Score: 4,
-                player2Score: 3,
-                player1TennisScore: 'Ad',
-                player2TennisScore: '40',
-                endGame: false,
-            });
-            newGame.save((err, newGame) => {
-                chai.request(api)
-                    .put('/api/game/player2Scored/' + newGame.id)
-                    .send()
-                    .end((err, res) => {
-                        res.should.have.status(200);
-                        res.body.should.have.property('_id').eql(newGame.id);
-                        res.body.should.have.property('player1Score').eql(4);
-                        res.body.should.have.property('player2Score').eql(4);
-                        res.body.should.have
-                            .property('player1TennisScore')
-                            .eql('Deuce');
-                        res.body.should.have
-                            .property('player2TennisScore')
-                            .eql('Deuce');
-                        res.body.should.have.property('endGame').eql(false);
-                        done();
-                    });
-            });
-        });
         it('it should increment player2Score to 5 and player2TennisScore to "Winner" and end game', (done) => {
             let newGame = new Game({
                 player1Score: 3,
@@ -558,7 +472,7 @@ describe('Tennis API', () => {
             });
             newGame.save((err, newGame) => {
                 chai.request(api)
-                    .put('/api/game/player2Scored/' + newGame.id)
+                    .put('/api/game/' + newGame.id + '/2')
                     .send()
                     .end((err, res) => {
                         res.should.have.status(200);
@@ -573,6 +487,39 @@ describe('Tennis API', () => {
                             .eql('Winner');
                         res.body.should.have.property('endGame').eql(true);
                         done();
+                    });
+            });
+        });
+        it('it should not update the game with invalid game id', (done) => {
+            chai.request(api)
+                .put('/api/game/' + '5ff681101c0eda4ce06c7079' + '/2')
+                .send()
+                .end((err, res) => {
+                    res.should.have.status(404);
+                    res.body.should.be
+                        .a('object')
+                        .eql({ msg: 'Game not found' });
+                    done();
+                });
+        });
+        it('it should not update the game with invalid player id', (done) => {
+            let newGame = new Game({
+                player1Score: 3,
+                player2Score: 4,
+                player1TennisScore: '40',
+                player2TennisScore: 'Ad',
+                endGame: false,
+            });
+            newGame.save((err, newGame) => {
+                chai.request(api)
+                    .put('/api/game/' + newGame.id + '/3')
+                    .send()
+                    .end((err, res) => {
+                        res.should.have.status(404);
+                    res.body.should.be
+                        .a('object')
+                        .eql({ msg: 'Invalid player id' });
+                    done();
                     });
             });
         });
